@@ -1,0 +1,31 @@
+name: Affichage des Informations
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Afficher Hello World
+        run: echo "Hello World"
+
+  nom:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Afficher le nom
+        run: echo "Mon nom est ${{ vars.MY_LAST_NAME }}"
+
+  prenom:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Afficher le prénom
+        run: echo "Mon prénom est ${{ vars.MY_FIRST_NAME }}"
+
+  email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Afficher l'email
+        run: echo "Mon email est ${{ vars.MY_EMAIL }}"
