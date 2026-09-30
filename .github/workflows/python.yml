@@ -1,0 +1,18 @@
+name: Script Python sur Commit
+
+on: [push]
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code du dépôt
+        uses: actions/checkout@v4
+
+      - name: Configurer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Exécuter le script
+        run: python -c "print('Commit success!')"
