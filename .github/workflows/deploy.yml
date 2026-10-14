@@ -1,9 +1,10 @@
-name: Deploy Hello World to GitHub Pages
+name: Lint and Deploy Hello World to GitHub Pages
 
 on:
   push:
     branches:
       - main
+
 permissions:
   contents: read
   pages: write
@@ -14,7 +15,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Validation du code (HTML Lint)
+        uses: htmlhint/action-htmlhint@v2
+        with:
+          file_pattern: '**/*.html'
+
   deploy:
+    needs: lint 
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
